@@ -10,3 +10,6 @@ build/
 dist/
 *.egg-info/
 .venv/
+
+sent2vec/
+models/
