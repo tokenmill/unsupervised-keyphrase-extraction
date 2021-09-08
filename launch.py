@@ -50,10 +50,6 @@ if __name__ == '__main__':
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-raw_text', help='raw text to process')
     group.add_argument('-text_file', help='file containing the raw text to process')
-    
-
-    parser.add_argument('-tagger_host', help='CoreNLP host', default='localhost')
-    parser.add_argument('-tagger_port', help='CoreNLP port', default=9000)
     parser.add_argument('-N', help='number of keyphrases to extract', required=True, type=int)
     args = parser.parse_args()
 
@@ -63,5 +59,5 @@ if __name__ == '__main__':
         raw_text = args.raw_text
 
     embedding_distributor = load_local_embedding_distributor()
-    pos_tagger = load_local_corenlp_pos_tagger(args.tagger_host, args.tagger_port)
+    pos_tagger = load_local_corenlp_pos_tagger()
     print(extract_keyphrases(embedding_distributor, pos_tagger, raw_text, args.N, 'en'))
